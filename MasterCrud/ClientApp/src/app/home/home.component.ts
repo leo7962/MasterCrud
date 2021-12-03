@@ -16,10 +16,11 @@ export class HomeComponent {
     });
   }
 
-  getCity(id): void {
+
+  /*getCity(id): void {
     http.get('/api/ciudades/').subscribe((data: any) => {
       this.datos = data;
       console.log(this.datos);
     });
-  }
+  }*/
 }
