@@ -1,4 +1,6 @@
+using Core.Interfaces;
 using Infrastructure.Data.Contexts;
+using MasterCrud.Helpers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
@@ -21,9 +23,12 @@ namespace MasterCrud
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAutoMapper(typeof(MappingProfiles));
             services.AddDbContext<DataContext>(options =>
                 options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection")));
             services.AddSwaggerGen();
+            services.AddScoped<ICityRepository, CityRepository>();
+            services.AddScoped<IAgentRepository, AgentRepository>();
             services.AddControllersWithViews();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration => { configuration.RootPath = "ClientApp/dist"; });

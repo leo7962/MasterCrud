@@ -1,15 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Core.Entities
+namespace MasterCrud.Dtos
 {
-    public class Agent
+    public class AgentCreateDto
     {
-        public int Id { get; set; }
         [Required] [StringLength(40)] public string Name { get; set; }
         [Required] [StringLength(40)] public string LastName { get; set; }
         [StringLength(40)] public int NumId { get; set; }
 
         public int CityId { get; set; }
-        public City City { get; set; }
     }
 }
