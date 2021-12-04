@@ -26,10 +26,10 @@ export class AgentServiceService {
   }
 
   putData(id, formData) {
-    return this.http.put(this.baseUrl + 'vendedores' + id, formData);
+    return this.http.put(this.baseUrl + 'vendedores/' + id, formData);
   }
 
   deleteData(id) {
-    return this.http.delete(this.baseUrl + 'vendedores' + id);
+    return this.http.delete(this.baseUrl + 'vendedores/' + id);
   }
 }
