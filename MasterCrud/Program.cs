@@ -31,7 +31,7 @@ namespace MasterCrud
                 }
             }
 
-            host.Run();
+            await host.RunAsync();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args)
