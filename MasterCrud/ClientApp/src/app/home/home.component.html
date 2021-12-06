@@ -1,67 +1,44 @@
-<ul class="nav nav-tabs" id="myTab" role="tablist">
-  <li class="nav-item" role="presentation">
-    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#ciudades" type="button"
-            role="tab"
-            aria-controls="home" aria-selected="true">Ciudades
-    </button>
-  </li>
-  <li class="nav-item" role="presentation">
-    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#vendedores" type="button"
-            role="tab"
-            aria-controls="profile" aria-selected="false">Vendedores
-    </button>
-  </li>
-</ul>
-
-<div class="tab-content" id="myTabContent">
-  <div class="tab-pane fade show active" id="ciudades" role="tabpanel" aria-labelledby="home-tab">
-    <div class="container mt-3">
-      <form [formGroup]="CityForm" (ngSubmit)="Save()">
-        <h3>Registro de ciudades</h3>
-        <div class="row">
-          <table class="table">
-            <tr>
-              <td>Nombre de la ciudad</td>
-              <td>
-                <input type="hidden" formControlName="id">
-                <input type="text" class="form-control" formControlName="description">
-                <div *ngIf="submitted && CityForm.controls.description.errors" class="text-danger">
-                  <div *ngIf="CityForm.controls.description.errors.required">El nombre de la ciudad es obligatorio</div>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <button type="submit" class="btn btn-primary mb-3">{{EventValue}}</button>
-              </td>
-            </tr>
-          </table>
-        </div>
-      </form>
-      <form [formGroup]="CityForm">
-        <div class="row">
-          <table class="table table-striped">
-            <tr>
-              <td>ID</td>
-              <td>Nombre Ciudad</td>
-              <td>Editar</td>
-              <td>Borrar</td>
-            </tr>
-            <tr *ngFor="let d of data">
-              <td>{{d.id}}</td>
-              <td><input type="hidden" formControlName="id">
-                <input type="text" class="form-control" formControlName="description" value="{{d.description}}"></td>
-              <td><a (click)="Update(d)" class="btn btn-warning mt-1">Editar</a></td>
-              <td><a (click)="deleteData(d.id)" class="btn btn-danger">Borrar</a></td>
-            </tr>
-          </table>
-        </div>
-      </form>
+<div class="container mt-3">
+  <form [formGroup]="CityForm" (ngSubmit)="Save()">
+    <h3>Registro de ciudades</h3>
+    <div class="row">
+      <table class="table">
+        <tr>
+          <td>Nombre de la ciudad</td>
+          <td>
+            <input type="hidden" formControlName="id">
+            <input type="text" class="form-control" formControlName="description">
+            <div *ngIf="submitted && CityForm.controls.description.errors" class="text-danger">
+              <div *ngIf="CityForm.controls.description.errors.required">El nombre de la ciudad es obligatorio</div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button type="submit" class="btn btn-primary mb-3">{{EventValue}}</button>
+          </td>
+        </tr>
+      </table>
     </div>
-  </div>
-
-  <div class="tab-pane fade" id="vendedores" role="tabpanel" aria-labelledby="profile-tab">
-
-  </div>
+  </form>
+  <form [formGroup]="CityForm">
+    <div class="row">
+      <table class="table table-striped">
+        <tr>
+          <td>ID</td>
+          <td>Nombre Ciudad</td>
+          <td>Editar</td>
+          <td>Borrar</td>
+        </tr>
+        <tr *ngFor="let d of data">
+          <td>{{d.id}}</td>
+          <td>{{d.description}}</td>
+          <td><a (click)="EditData(d)" class="btn btn-warning mt-1">Editar</a></td>
+          <td><a (click)="deleteData(d.id)" class="btn btn-danger">Borrar</a></td>
+        </tr>
+      </table>
+    </div>
+  </form>
 </div>
+
 

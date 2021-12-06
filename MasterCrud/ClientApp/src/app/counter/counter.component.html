@@ -1,7 +1,77 @@
-<h1>Counter</h1>
-
-<p>This is a simple example of an Angular component.</p>
-
-<p aria-live="polite">Current count: <strong>{{ currentCount }}</strong></p>
-
-<button class="btn btn-primary" (click)="incrementCounter()">Increment</button>
+<div class="container mt-3">
+  <form [formGroup]="AgentForm" (ngSubmit)="Save()">
+    <h3>Registro de vendedores</h3>
+    <div class="row">
+      <table class="table">
+        <tr>
+          <td>Nombre del vendedor</td>
+          <td>
+            <input type="hidden" formControlName="id">
+            <input type="text" class="form-control" formControlName="name">
+            <div *ngIf="submitted && AgentForm.controls.name.errors" class="text-danger">
+              <div *ngIf="AgentForm.controls.name.errors.required">El nombre es obligatorio</div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>Apellido</td>
+          <td><input type="text" class="form-control" formControlName="lastName">
+            <div *ngIf="submitted && AgentForm.controls.lastName.errors" class="text-danger">
+              <div *ngIf="AgentForm.controls.lastName.errors.required">El apellido es obligatorio</div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>Número de identificación</td>
+          <td><input type="text" class="form-control" formControlName="numId">
+            <div *ngIf="submitted && AgentForm.controls.numId.errors" class="text-danger">
+              <div *ngIf="AgentForm.controls.numId.errors.required">El número de identificación es obligatorio</div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>Ciudad</td>
+          <td>
+            <input type="hidden" class="form-control" formControlName="cityId">
+            <select class="form-select" [(ngModel)]="city" aria-label="Default select example" formControlName="city">
+              <option selected>Seleccione una ciudad</option>
+              <option [value]="item" *ngFor="let item of city">{{item.description}}</option>
+            </select>
+            <div *ngIf="submitted && AgentForm.controls.city.errors" class="text-danger">
+              <div *ngIf="AgentForm.controls.city.errors.required">La ciudad es obligatoria</div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button type="submit" class="btn btn-primary mb-3">{{EventValue}}</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </form>
+  <form [formGroup]="AgentForm">
+    <div class="row">
+      <table class="table table-striped">
+        <tr>
+          <td>ID</td>
+          <td>Nombre vendedor</td>
+          <td>Apellido</td>
+          <td>Número de identificación</td>
+          <td>Ciudad</td>
+          <td>Editar</td>
+          <td>Borrar</td>
+        </tr>
+        <tr *ngFor="let d of data">
+          <td>{{d.id}}</td>
+          <td>{{d.name}}</td>
+          <td>{{d.lastName}} </td>
+          <td>{{d.numId}}</td>
+          <td>{{d.cityId}}</td>
+          <td><a (click)="EditData(d)" class="btn btn-warning mt-1">Editar</a></td>
+          <td><a (click)="deleteData(d.id)" class="btn btn-danger">Borrar</a></td>
+        </tr>
+      </table>
+    </div>
+  </form>
+</div>

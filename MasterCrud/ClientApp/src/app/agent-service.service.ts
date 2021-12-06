@@ -32,4 +32,8 @@ export class AgentServiceService {
   deleteData(id) {
     return this.http.delete(this.baseUrl + 'vendedores/' + id);
   }
+
+  GetDataCity() {
+    return this.http.get(this.baseUrl + 'ciudades'); //https://localhost:5001/api/vendedores
+  }
 }

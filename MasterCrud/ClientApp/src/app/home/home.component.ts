@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {ContextServiceService} from "../context-service.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {AgentServiceService} from "../agent-service.service";
 
 @Component({
   selector: 'app-home',
@@ -12,9 +11,9 @@ export class HomeComponent {
   data: any;
   CityForm: FormGroup;
   submitted = false;
-  EventValue: any = "Save";
+  EventValue: any = "Guardar";
 
-  constructor(private CityService: ContextServiceService, private AgentService: AgentServiceService) {
+  constructor(private CityService: ContextServiceService) {
   }
 
   ngOnInit(): void {
@@ -52,10 +51,8 @@ export class HomeComponent {
     })
   }
 
-  Update(Data) {
+  Update() {
     this.submitted = true;
-    this.CityForm.controls["id"].setValue(Data.id);
-    this.CityForm.controls["description"].setValue(Data.description);
 
     if (this.CityForm.invalid) {
       return;
@@ -66,10 +63,16 @@ export class HomeComponent {
     })
   }
 
+  EditData(Data) {
+    this.CityForm.controls["id"].setValue(Data.id);
+    this.CityForm.controls["description"].setValue(Data.description);
+    this.EventValue = "Actualizar";
+  }
+
   resetFrom() {
     this.GetData();
     this.CityForm.reset();
-    this.EventValue = "Save";
+    this.EventValue = "Guardar";
     this.submitted = false;
   }
 }
