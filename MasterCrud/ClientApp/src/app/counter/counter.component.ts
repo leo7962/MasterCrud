@@ -10,6 +10,7 @@ export class CounterComponent {
 
   data: any;
   city: any;
+  cities: any[];
   AgentForm: FormGroup;
   submitted = false;
   EventValue: any = "Guardar";
@@ -27,7 +28,7 @@ export class CounterComponent {
       lastName: new FormControl("", [Validators.required]),
       numId: new FormControl("", [Validators.required]),
       cityId: new FormControl("", [Validators.required]),
-      city: new FormControl("", [Validators.required]),
+      //city: new FormControl("", [Validators.required]),
     })
   }
 
@@ -60,7 +61,7 @@ export class CounterComponent {
       this.data = data;
       this.resetFrom();
 
-    })
+    });
   }
 
   Update() {
@@ -79,6 +80,7 @@ export class CounterComponent {
     this.AgentForm.controls["id"].setValue(Data.id);
     this.AgentForm.controls["name"].setValue(Data.name);
     this.AgentForm.controls["lastName"].setValue(Data.lastName);
+    this.AgentForm.controls["numId"].setValue(Data.numId);
     this.AgentForm.controls["cityId"].setValue(Data.cityId);
     this.EventValue = "Actualizar";
   }

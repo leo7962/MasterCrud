@@ -32,10 +32,10 @@
         <tr>
           <td>Ciudad</td>
           <td>
-            <input type="hidden" class="form-control" formControlName="cityId">
-            <select class="form-select" [(ngModel)]="city" aria-label="Default select example" formControlName="city">
+            <select class="form-select" [(ngModel)]="cities" aria-label="Default select example"
+                    formControlName="cityId">
               <option selected>Seleccione una ciudad</option>
-              <option [value]="item" *ngFor="let item of city">{{item.description}}</option>
+              <option [value]="item.id" *ngFor="let item of city">{{item.description}}</option>
             </select>
             <div *ngIf="submitted && AgentForm.controls.city.errors" class="text-danger">
               <div *ngIf="AgentForm.controls.city.errors.required">La ciudad es obligatoria</div>
